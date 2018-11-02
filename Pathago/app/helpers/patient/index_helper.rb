@@ -1,0 +1,2 @@
+module Patient::IndexHelper
+end
