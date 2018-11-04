@@ -1,0 +1,2 @@
+module Pathologylabs::IndexHelper
+end

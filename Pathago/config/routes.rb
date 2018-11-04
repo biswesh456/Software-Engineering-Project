@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/patient/:id/index/", to: "patients/index#index", as: "patient_index"
+  get "/pathologylab/:id/index/", to: "pathologylabs/index#index", as: "pathologylab_index"
 end
