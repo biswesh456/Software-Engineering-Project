@@ -1,0 +1,2 @@
+class PathologyLabTestsController < ApplicationController
+end
