@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
       patient_index_path(resource_or_scope)
     elsif current_pathologylab
       pathologylab_index_path(resource_or_scope)
+    elsif current_admin
+      admin_index_path(resource_or_scope)
     end
   end
 end

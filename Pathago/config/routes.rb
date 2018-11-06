@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :admins, path: 'admin', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }, controllers: {registrations: 'admins/registrations'}
+  devise_scope :admin do
+   get "signup", to: "admins/registrations#new"
+   get "login", to: "admins/sessions#new"
+   get "logout", to: "admins/sessions#destroy"
+  end
   devise_for :patients, path: 'patient', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }, controllers: {registrations: 'patients/registrations'}
   devise_scope :patient do
    get "signup", to: "patients/registrations#new"
@@ -15,4 +21,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/patient/:id/index/", to: "patients/index#index", as: "patient_index"
   get "/pathologylab/:id/index/", to: "pathologylabs/index#index", as: "pathologylab_index"
+  get "/admin/:id/index/", to: "admins/index#index", as: "admin_index"
 end
