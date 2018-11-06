@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181106181514) do
+ActiveRecord::Schema.define(version: 20181106184604) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -30,11 +30,23 @@ ActiveRecord::Schema.define(version: 20181106181514) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "appointments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "status"
+    t.text "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "pathology_lab_test_id"
+    t.bigint "patient_id"
+    t.index ["pathology_lab_test_id"], name: "index_appointments_on_pathology_lab_test_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
+
   create_table "pathology_lab_tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "pathologylab_id"
     t.bigint "test_id"
+    t.integer "cost"
     t.index ["pathologylab_id"], name: "index_pathology_lab_tests_on_pathologylab_id"
     t.index ["test_id"], name: "index_pathology_lab_tests_on_test_id"
   end
@@ -83,6 +95,8 @@ ActiveRecord::Schema.define(version: 20181106181514) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "pathology_lab_tests"
+  add_foreign_key "appointments", "patients"
   add_foreign_key "pathology_lab_tests", "pathologylabs"
   add_foreign_key "pathology_lab_tests", "tests"
 end
