@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/", to: "index#index"
   devise_for :admins, path: 'admin', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }, controllers: {registrations: 'admins/registrations'}
   devise_scope :admin do
    get "signup", to: "admins/registrations#new"
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
    get "signup", to: "patients/registrations#new"
    get "login", to: "patients/sessions#new"
    get "logout", to: "patients/sessions#destroy"
-   get "/", to: "patients/sessions#new"
   end
   devise_for :pathologylabs, path: 'pathologylab', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }, controllers: {registrations: 'pathologylabs/registrations'}
   devise_scope :pathologylab do
