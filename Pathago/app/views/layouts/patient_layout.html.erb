@@ -1,0 +1,25 @@
+<header class="navbar  navbar-inverse">
+  <div class="navbar-class">
+    <div class="container">
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Pathago</title>
+          <%= csrf_meta_tags %>
+
+          <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+          <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        </head>
+            <header class="navbar  navbar-inverse">
+              <div class="navbar-class">
+                <div class="container">
+                <body>
+                  <ul class="nav navbar-nav">
+                    <li><%=link_to('Logout', destroy_patient_session_path, method: :delete)%></li>
+                  </ul>
+                </div>
+              </div>
+            </header>
+          <%= yield %>
+        </body>
+      </html>

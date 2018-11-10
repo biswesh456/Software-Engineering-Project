@@ -1,4 +1,5 @@
 class Patients::IndexController < ApplicationController
+  layout 'patient_layout'
   def index
     @patient = Patient.find(params[:id])
   end
