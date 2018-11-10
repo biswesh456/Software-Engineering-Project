@@ -10,16 +10,15 @@
           <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
           <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         </head>
-            <header class="navbar  navbar-inverse">
-              <div class="navbar-class">
+        <body>
                 <div class="container">
-                <body>
-                  <ul class="nav navbar-nav">
-                    <li><%=link_to('Logout', destroy_pathologylab_session_path, method: :delete)%></li>
+                  <ul style="background-color: black; border-radius: 10px; height: 30px; padding:5px; opacity:0.8;">
+                    <li style="display: inline; margin-left: 20; "><a href="#" style="text-decoration: none; color:lightgrey;>Home</a>
+                    <li style="display: inline; margin-left: 20; "><a href="#" style="text-decoration: none; color:lightgrey;>Profile</a>
+                    <li style="display: inline; margin-left: 20; "><a href="#" style="text-decoration: none; color:lightgrey;>Appointments</a>
+                    <li style="display: inline; margin-left: 20; "><%=link_to('Logout', destroy_pathologylab_session_path, method: :delete, style: "color:lightgrey; text-decoration: none;")%></li>
                   </ul>
                 </div>
-              </div>
-            </header>
           <%= yield %>
         </body>
       </html>
