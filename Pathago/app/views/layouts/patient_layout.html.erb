@@ -1,27 +1,19 @@
-<header class="navbar  navbar-inverse">
-  <div class="navbar-class">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pathago</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.css">
+  </head>
+
+  <body>
+    <%= render 'layouts/header_patient'%>
     <div class="container">
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Pathago</title>
-          <%= csrf_meta_tags %>
-
-          <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
-          <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-          <%= stylesheet_link_tag 'patient_layout', media: 'all' %>
-        </head>
-        <body>
-            <div class="navbar">
-              <ul style="background-color: black; border-radius: 10px; height: 30px; padding:5px; opacity:0.8">
-                <li style="display: inline; margin-left: 20;"><a style="text-decoration: none; color:lightgrey;" href="#">Home</a>
-                <li style="display: inline; margin-left: 20;"><a style="text-decoration: none; color:lightgrey;" href="#">Profile</a>
-                <li style="display: inline; margin-left: 20;"><a style="text-decoration: none; color:lightgrey;" href="#">Appointments</a>
-                <li style="display: inline; margin-left: 20;"><a style="text-decoration: none; color:lightgrey;" href="#">New Appointment</a>
-                <li style="display: inline; margin-left: 20;"><%=link_to('Logout', destroy_patient_session_path, method: :delete, style: "color:lightgrey; text-decoration: none;")%></li>
-              </ul>
-            </div>
-
-            <%= yield %>
-        </body>
-      </html>
+      <%= yield %>
+    </div>
+  </body>
+</html>
