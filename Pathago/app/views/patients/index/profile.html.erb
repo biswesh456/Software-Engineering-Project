@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row feature">
+
+        <div class="container">
+           <h2>Patient</h2>
+            <div class="row">
+               <div class="col-lg-8">
+                <p> <strong>Name: </strong><%=@patient.name%></p>
+                <p> <strong>Email: </strong><%=@patient.email%></p>
+                <p> <strong>Address: </strong><%=@patient.address%></p>
+                <p> <strong>Member since: </strong><%=((Time.now.to_i - @patient.created_at.to_i)/1.day)%> days</p>
+                <!--<p> <strong>Educational Institution: </strong> IIIT-Bangalore </p>-->
+                <!--<p> <strong>Country: </strong> India </p>-->
+                <% if patient_signed_in? and current_patient.id==@patient.id%>
+                    <render editbutton>
+                    <p><a class="btn btn-secondary" role="button" href = <%= edit_patient_registration_path(current_patient) %>>Edit </a></p>
+                <% end %>
+              </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br />
+
+    <br />
+</div>

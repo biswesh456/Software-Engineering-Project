@@ -19,7 +19,8 @@ Rails.application.routes.draw do
    get "logout", to: "pathologylabs/sessions#destroy"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get "/patient/:id/index/", to: "patients/index#index", as: "patient_index"
+  get "/patient/:id/home/", to: "patients/index#index", as: "patient_index"
+  get "/patient/:id/profile/", to: "patients/index#profile", as: "patient_profile"
   get "/pathologylab/:id/index/", to: "pathologylabs/index#index", as: "pathologylab_index"
   get "/admin/:id/index/", to: "admins/index#index", as: "admin_index"
 end
