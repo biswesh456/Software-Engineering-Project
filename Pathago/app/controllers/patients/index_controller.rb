@@ -7,4 +7,8 @@ class Patients::IndexController < ApplicationController
   def profile
     @patient = Patient.find(params[:id])
   end
+
+  def new_appointment
+    @patient = Patient.find(params[:id])
+  end
 end

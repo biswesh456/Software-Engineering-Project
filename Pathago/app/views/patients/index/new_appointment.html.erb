@@ -1,0 +1,65 @@
+<div> Test </div>
+<div>
+<select id="firstDropdown">
+    <option value="0">Select one of the tests</option>
+      <%= @testid = []%>
+      <%Test.all.map(&:name).each do |i|%>
+        <%= @testid.append((Test.find_by(name: i)).id)%>
+        <option value='<%=(Test.find_by(name: i)).id%>'><%=i%></option>
+      <% end %>
+    </select>
+</div>
+</br>
+<div> Pathology Lab </div>
+<div>
+    <select id="secondDropdown">
+        <option value="0">Please select the value in tests dropdown</option>
+    </select>
+</div>
+</br>
+<div id='info' />
+
+<script type="text/javascript">
+  $('#firstDropdown').on('change', function (e) {
+    $('#info').hide();
+    var testid = $(this).val();
+    console.log(testid);
+    $('#secondDropdown').empty();
+    var pathologylabList = []
+    '<%@testid.each do |i|%>'
+      if('<%= i%>' == testid){
+        '<%= @k = (PathologyLabTest.where(test_id: i))%>'
+        '<%@k.each do |k|%>'
+          pathologylabList.push('<%= (Pathologylab.find_by(id: k.pathologylab_id)).name%>')
+        '<%end%>'
+      }
+    '<%end%>'
+
+    $('#secondDropdown').append('<option value='+ 0 + '> Select the pathalogy lab </option>')
+    for (l=0; l<pathologylabList.length; l++)
+      $('#secondDropdown').append('<option value='+ pathologylabList[l] + '>' + pathologylabList[l] + '</option>')
+
+  })
+
+  $('#secondDropdown').on('change', function (e) {
+    var pathid = $(this).val();
+    if (pathid == 0)
+      $('#info').hide();
+    else {
+      var testid = $('#firstDropdown').val();
+      $.ajax({data: { test_id: testid, pathologylab_name: pathid}
+              ,url: "<%= pathologylab_test_info_path()%>"
+              ,type: 'GET',
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+              },success: function(result){
+                $("#info").html(
+                  '<h3> Cost: ' + '<b>'+ 'Rs. ' + result.cost + '</b>' + '</h3>' + '</br>' +
+                    '<%= link_to '<button type="button">Book an appointment</button>'.html_safe, new_appointment_path() %>'
+                );
+              }
+            });
+      $('#info').show();
+    }
+  })
+</script>

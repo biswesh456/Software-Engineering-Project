@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/patient/:id/home/", to: "patients/index#index", as: "patient_index"
   get "/patient/:id/profile/", to: "patients/index#profile", as: "patient_profile"
+  get "/patient/:id/new_appointment/", to: "patients/index#new_appointment", as: "patient_new_appointment"
   get "/pathologylab/:id/index/", to: "pathologylabs/index#index", as: "pathologylab_index"
   get "/admin/:id/index/", to: "admins/index#index", as: "admin_index"
+  get "/pathologylab_test/info", to: "pathologylabs/index#info", as: "pathologylab_test_info"
+  get "/appointment/new", to: "appointments#new", as: "new_appointment"
+
 end
