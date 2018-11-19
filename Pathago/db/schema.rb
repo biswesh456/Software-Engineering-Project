@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181119061656) do
+ActiveRecord::Schema.define(version: 20181119125158) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 20181119061656) do
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  create_table "test_path_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "time"
+    t.bigint "pathology_lab_tests_id"
+    t.integer "total_seats"
+    t.integer "occupied_seats"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pathology_lab_tests_id"], name: "index_test_path_times_on_pathology_lab_tests_id"
+  end
+
   create_table "tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -101,4 +111,5 @@ ActiveRecord::Schema.define(version: 20181119061656) do
   add_foreign_key "appointments", "patients"
   add_foreign_key "pathology_lab_tests", "pathologylabs"
   add_foreign_key "pathology_lab_tests", "tests"
+  add_foreign_key "test_path_times", "pathology_lab_tests", column: "pathology_lab_tests_id"
 end

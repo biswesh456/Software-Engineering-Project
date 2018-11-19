@@ -1,1 +1,17 @@
-<h1>GGG</h1>
+<h1>Make A New Appointment</h1>
+<br>
+<h4>Enter appointment date</h4> <br>
+<input type="date" id = "appt_date">
+<br>
+<p id = "display">
+</p>
+<script>
+    var date,month,year;
+    $("#appt_date").change(function(){
+        var date = new Date($('#appt_date').val());
+        day = date.getDate();
+        month = date.getMonth() + 1;
+        year = date.getFullYear();
+        alert(month);
+    });
+</script>

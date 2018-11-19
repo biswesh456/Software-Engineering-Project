@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2018-11-19 18:21:58
+  pathology_lab_tests: one
+  total_seats: 1
+  occupied_seats: 1
+
+two:
+  time: 2018-11-19 18:21:58
+  pathology_lab_tests: two
+  total_seats: 1
+  occupied_seats: 1
