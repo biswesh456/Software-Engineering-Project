@@ -6,9 +6,9 @@ class Pathologylabs::IndexController < ApplicationController
 
   def info
     @testid = params[:test_id]
-    @pathologylabid = (Pathologylab.find_by(name: params[:pathologylab_name])).id
-    @path_test = PathologyLabTest.find_by(test_id: @testid, pathologylab_id: @pathologylabid)
+    @pathologylab = (Pathologylab.find_by(name: params[:pathologylab_name]))
+    @path_test = PathologyLabTest.find_by(test_id: @testid, pathologylab_id: @pathologylab.id)
 
-    render json: @path_test
+    render json: {path_test: @path_test, pathlab: @pathologylab}
   end
 end
