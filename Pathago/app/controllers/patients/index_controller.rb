@@ -3,7 +3,9 @@ class Patients::IndexController < ApplicationController
   def index
     @patient = Patient.find(params[:id])
   end
-
+  def show
+    @appointments = Appointment.where(patient_id: current_patient.id)
+  end
   def profile
     @patient = Patient.find(params[:id])
   end
