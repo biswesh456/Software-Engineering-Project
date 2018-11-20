@@ -11,4 +11,10 @@ class Patients::IndexController < ApplicationController
   def new_appointment
     @patient = Patient.find(params[:id])
   end
+
+  def book_appointment
+    @pathology_lab_test = PathologyLabTest.find(params[:id])
+    @test = @pathology_lab_test.test
+    @pathologylab = @pathology_lab_test.pathologylab
+  end
 end

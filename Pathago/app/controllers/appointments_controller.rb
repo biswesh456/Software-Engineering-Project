@@ -1,8 +1,5 @@
 class AppointmentsController < ApplicationController
   def new
-    @pathology_lab_test = PathologyLabTest.find(params[:id])
-    @test = @pathology_lab_test.test
-    @pathologylab = @pathology_lab_test.pathologylab
   end
   def show
      @appointments = Appointment.where(patient_id: current_patient.id)

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get "/pathologylab/:id/index/", to: "pathologylabs/index#index", as: "pathologylab_index"
   get "/admin/:id/index/", to: "admins/index#index", as: "admin_index"
   get "/pathologylab_test/info", to: "pathologylabs/index#info", as: "pathologylab_test_info"
-  get "/appointment/new", to: "appointments#new", as: "new_appointment"
+  get "/patient/:id/appointment/book", to: "patients/index#book_appointment", as: "book_appointment"
   get "/appointment/show", to: "appointments#show" , as:"patient_show_appointment"
   get "/appointment/time_info", to: "appointments#time_info", as: "get_time_info"
 
