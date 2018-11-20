@@ -17,11 +17,15 @@
     </select>
 </div>
 </br>
-<div id='info' />
+<div id='info'> </div>
+<button type="button" id='btn' style="opacity:0;">Book an appointment</button>
+
 
 <script type="text/javascript">
+  var res
   $('#firstDropdown').on('change', function (e) {
     $('#info').hide();
+    $('#btn').css('opacity', '0');
     var testid = $(this).val();
     console.log(testid);
     $('#secondDropdown').empty();
@@ -53,13 +57,18 @@
               beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
               },success: function(result){
+                res = result;
                 $("#info").html(
-                  '<h3> Cost: ' + '<b>'+ 'Rs. ' + result.cost + '</b>' + '</h3>' + '</br>' +
-                    '<%= link_to '<button type="button">Book an appointment</button>'.html_safe, new_appointment_path() %>'
+                  '<h4> Cost: ' + '<b>'+ 'Rs. ' + result.cost + '</b>' + '</h4>' + '</br>'
                 );
+                $('#btn').css('opacity', '1');
               }
             });
       $('#info').show();
     }
+  })
+
+  $("#btn").on('click', function (e) {
+    window.location.replace("/appointment/new?id=" + res.id);
   })
 </script>

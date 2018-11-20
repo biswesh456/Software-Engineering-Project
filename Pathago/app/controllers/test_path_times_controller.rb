@@ -1,0 +1,2 @@
+class TestPathTimesController < ApplicationController
+end

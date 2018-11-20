@@ -1,3 +1,3 @@
 class TestPathTime < ApplicationRecord
-  belongs_to :pathology_lab_tests
+  belongs_to :pathology_lab_test
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181119125158) do
+ActiveRecord::Schema.define(version: 20181119232627) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20181119125158) do
     t.bigint "pathologylab_id"
     t.bigint "test_id"
     t.integer "cost"
+    t.integer "total_seats"
     t.index ["pathologylab_id"], name: "index_pathology_lab_tests_on_pathologylab_id"
     t.index ["test_id"], name: "index_pathology_lab_tests_on_test_id"
   end
@@ -93,12 +94,12 @@ ActiveRecord::Schema.define(version: 20181119125158) do
 
   create_table "test_path_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "time"
-    t.bigint "pathology_lab_tests_id"
+    t.bigint "pathology_lab_test_id"
     t.integer "total_seats"
     t.integer "occupied_seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pathology_lab_tests_id"], name: "index_test_path_times_on_pathology_lab_tests_id"
+    t.index ["pathology_lab_test_id"], name: "index_test_path_times_on_pathology_lab_test_id"
   end
 
   create_table "tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -111,5 +112,5 @@ ActiveRecord::Schema.define(version: 20181119125158) do
   add_foreign_key "appointments", "patients"
   add_foreign_key "pathology_lab_tests", "pathologylabs"
   add_foreign_key "pathology_lab_tests", "tests"
-  add_foreign_key "test_path_times", "pathology_lab_tests", column: "pathology_lab_tests_id"
+  add_foreign_key "test_path_times", "pathology_lab_tests"
 end
