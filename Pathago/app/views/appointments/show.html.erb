@@ -1,2 +1,68 @@
 <h1> Appointments History </h1>
-<%= @appointments[0].id%>
+<br>
+<br>
+<style>
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      color: #4a4a4d;
+      font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    th,
+    td {
+      padding: 30px 50px;
+      vertical-align: middle;
+      align: middle;
+      border-bottom: 1px solid #cecfd5;
+      border-right: 1px solid #cecfd5;
+    }
+    thead {
+      background: #395870;
+      background: linear-gradient(#49708f, #293f50);
+      color: #fff;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    th:nth-child(n){
+        border-top-left-radius: 5px;
+        text-align: center;
+    }
+    tbody tr:nth-child(even) {
+      background: #f0f0f2;
+    }
+    .appt-id{
+      color: #395870;
+      display: block;
+      text-align: center;
+    }
+    .appt-text {
+      text-align: center;
+    }
+</style>
+
+<table width = 1200>
+  <thead>
+    <tr>
+      <th scope="col">Test</th>
+      <th scope="col">Tests</th>
+      <th scope="col">Pathology Lab</th>
+      <th scope="col">Status</th>
+      <th scope="col">Result</th>
+      <th scope="col">Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |f|%>
+        <tr>
+            <td>
+            <strong class="appt-id"><%= f.id%></strong>
+            </td>
+            <td class="appt-text">N/A</td>
+            <td class="appt-text">N/A</td>
+            <td class="appt-text"><%=f.status%></td>
+            <td class="appt-text"><%=f.result%></td>
+            <td class="appt-text">N/A</td>
+        </tr>
+    <%end%>
+  </tbody>
+</table>
