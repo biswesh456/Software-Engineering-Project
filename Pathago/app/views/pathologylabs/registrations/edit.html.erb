@@ -19,6 +19,19 @@
   </div>
 
   <div class="form-group">
+    <label for "query_test_name"> Test </label>
+    <br>
+    <% @tests_provided.each do |tp| %>
+    <%= f.check_box :tests_approved, { multiple: true, checked:true }, tp.name, false%>
+    <%= f.label tp.name %><br />
+    <% end %>
+    <% @tests.each do |tp| %>
+    <%= f.check_box :tests_not_approved, { multiple: true, checked:false }, tp.name, false%>
+    <%= f.label tp.name %><br />
+    <% end %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :password %>
     <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
 

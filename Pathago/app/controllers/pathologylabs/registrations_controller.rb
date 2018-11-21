@@ -16,11 +16,47 @@ class Pathologylabs::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @tests_provided = current_pathologylab.tests
+    @alltest = Test.all
+    @tests = []
+    @alltest.each do |t|
+      unless @tests_provided.include?(t)
+          @tests << t
+      end
+    end
     super
   end
 
   # PUT /resource
   def update
+    tests_approved = []
+    if (defined? params[:pathologylab][:tests_approved])
+      (tests_approved << params[:pathologylab][:tests_approved]).flatten!
+    end
+    if (defined? params[:pathologylab][:tests_not_approved])
+      (tests_approved << params[:pathologylab][:tests_not_approved]).flatten!
+    end
+
+    puts(tests_approved)
+    # remove those tests which were previously present but now are not there
+    @current_tests = PathologyLabTest.where(pathologylab_id:current_pathologylab.id)
+    @current_tests.each do |ct|
+      tname = Test.find(ct.test_id).name
+      unless tests_approved.include?(tname)
+          ct.destroy
+      end
+    end
+
+    # create new tests which were not present before
+    tests_approved.each do |ta|
+      t = Test.find_by(name: ta)
+      unless t.nil?
+        new_path_test = PathologyLabTest.find_by(test_id: t.id, pathologylab_id:current_pathologylab.id)
+        if new_path_test.blank?
+          PathologyLabTest.create(test_id: t.id, pathologylab_id:current_pathologylab.id)
+        end
+      end
+    end
     super
   end
 
@@ -39,6 +75,11 @@ class Pathologylabs::RegistrationsController < Devise::RegistrationsController
   # end
 
   # protected
+  def configure_permitted_parameters
+   devise_parameter_sanitizer.permit(:sign_up, keys: [:tests_approved])
+   devise_parameter_sanitizer.permit(:sign_in, keys: [:tests_approved])
+   devise_parameter_sanitizer.permit(:account_update, keys: [:tests_approved])
+ end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
