@@ -4,6 +4,15 @@ class Pathologylabs::IndexController < ApplicationController
     @pathologylab = Pathologylab.find(params[:id])
   end
 
+  def profile
+    @pathologylab = Pathologylab.find(params[:id])
+    tests_provided = PathologyLabTest.where(pathologylab_id: @pathologylab.id)
+    @test = []
+    tests_provided.each do |t|
+      @test.append(Test.find(t.test_id))
+    end
+  end
+
   def info
     @testid = params[:test_id]
     @pathologylab = (Pathologylab.find_by(name: params[:pathologylab_name]))
