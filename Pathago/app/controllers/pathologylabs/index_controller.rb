@@ -47,4 +47,15 @@ class Pathologylabs::IndexController < ApplicationController
       end
     end
   end
+
+  def edit_appointment
+    @appointment = Appointment.find(params[:app_id])
+  end
+
+  def edit_appointment_after
+    @appointment = Appointment.find(params[:app_id])
+    @appointment.status = params[:status]
+    @appointment.save
+    redirect_to pathologylab_history_path()
+  end
 end

@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   get "patient/:id/appointment/confirmation", to: "patients/index#confirmation", as: "appointment_confirmation"
   get "/pathologylab/:id/current_appointment", to: "pathologylabs/index#current_appointment" , as:"pathologylab_current_appointment"
   get "/pathologylab/:id/history", to: "pathologylabs/index#history" , as:"pathologylab_history"
+  get "/pathologylab/:id/edit_appointment", to: "pathologylabs/index#edit_appointment" , as:"pathologylab_edit_appointment"
+  get "/pathologylab/:id/edit_appointment_after", to: "pathologylabs/index#edit_appointment_after" , as:"pathologylab_edit_appointment_after"
 end

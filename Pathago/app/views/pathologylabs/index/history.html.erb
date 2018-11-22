@@ -48,7 +48,7 @@
       <th scope="col">Patient Name</th>
       <th scope="col">Status</th>
       <th scope="col">Result</th>
-      <th scope="col">Cost</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -65,7 +65,7 @@
             <td class="appt-text"><%= @patient.name%></td>
             <td class="appt-text"><%=f.status%></td>
             <td class="appt-text"><%=f.result%></td>
-            <td class="appt-text">Rs. <%= @path_test.cost%></td>
+            <td class="appt-text"><%= link_to('Edit', pathologylab_edit_appointment_path(app_id: f.id), method: :get, class: 'btn btn-primary')%></td>
         </tr>
     <%end%>
   </tbody>

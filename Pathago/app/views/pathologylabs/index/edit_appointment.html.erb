@@ -1,0 +1,54 @@
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+</style>
+
+<h2>Pathology Lab</h2> <br><br>
+<script>
+  '<%=@path_test = PathologyLabTest.find(@appointment.pathology_lab_test_id)%>'
+  '<%=@patient = Patient.find(@appointment.patient_id)%>'
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Test Name</div>
+  <div class="panel-body"><%=@path_test.test.name%></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Patient ID</div>
+  <div class="panel-body"><%=@patient.id%></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Patient Name</div>
+  <div class="panel-body"><%=@patient.name%></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Change Status</div>
+  <div class="panel-body">
+    <select id="status" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
+      <option value="Pending">Pending</option>
+      <option value="Complete">Complete</option>
+    </select>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Add Report</div>
+
+</div>
+<button id="bttn" class="btn btn-info"> Done </button>
+<script>
+  $("#bttn").on('click', function (e) {
+    window.location.replace("edit_appointment_after?status=" + $("#status").val() + "&app_id=" + '<%=@appointment.id%>');
+  })
+</script>
+<br><br>

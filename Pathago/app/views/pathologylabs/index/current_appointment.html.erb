@@ -1,4 +1,4 @@
-<h1> Appointments History </h1>
+<h1> Current Appointments</h1>
 <br>
 <br>
 <style>
@@ -63,7 +63,7 @@
             <td class="appt-text"><%= @patient.id%></td>
             <td class="appt-text"><%= @patient.name%></td>
             <td class="appt-text"><%=f.status%></td>
-            <td class="appt-text"><%= link_to('Edit', new_patient_session_path, method: :get, class: 'btn btn-primary')%></td>
+            <td class="appt-text"><%= link_to('Edit', pathologylab_edit_appointment_path(app_id: f.id), method: :get, class: 'btn btn-primary')%></td>
         </tr>
     <%end%>
   </tbody>
