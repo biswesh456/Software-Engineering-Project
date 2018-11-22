@@ -44,7 +44,8 @@
   <thead>
     <tr>
       <th scope="col">Test Name</th>
-      <th scope="col">Pathology Lab</th>
+      <th scope="col">Patient Id</th>
+      <th scope="col">Patient Name</th>
       <th scope="col">Status</th>
       <th scope="col">Result</th>
       <th scope="col">Cost</th>
@@ -54,12 +55,14 @@
     <% @appointments.each do |f|%>
       <script>
         '<%=@path_test = PathologyLabTest.find(f.pathology_lab_test_id)%>'
+        '<%=@patient = Patient.find(f.patient_id)%>'
       </script>
         <tr>
             <td>
             <strong class="appt-id"><%= @path_test.test.name%></strong>
             </td>
-            <td class="appt-text"><%= @path_test.pathologylab.name%></td>
+            <td class="appt-text"><%= @patient.id%></td>
+            <td class="appt-text"><%= @patient.name%></td>
             <td class="appt-text"><%=f.status%></td>
             <td class="appt-text"><%=f.result%></td>
             <td class="appt-text">Rs. <%= @path_test.cost%></td>

@@ -17,4 +17,34 @@ class Pathologylabs::IndexController < ApplicationController
 
     render json: {path_test: @path_test, pathlab: @pathologylab}
   end
+
+  def current_appointment
+    @path_test = PathologyLabTest.where(pathologylab_id: current_pathologylab.id)
+    @appointments = []
+    unless @path_test.nil? || @path_test.length == 0
+      @path_test.each do |pt|
+        a = Appointment.where(pathology_lab_test_id: pt.id)
+        a.each do |ap|
+          if ap.status == "Pending"
+            @appointments.push(ap)
+          end
+        end
+      end
+    end
+  end
+
+  def history
+    @path_test = PathologyLabTest.where(pathologylab_id: current_pathologylab.id)
+    @appointments = []
+    unless @path_test.nil? || @path_test.length == 0
+      @path_test.each do |pt|
+        a = Appointment.where(pathology_lab_test_id: pt.id)
+        a.each do |ap|
+          if ap.status != "Pending"
+            @appointments.push(ap)
+          end
+        end
+      end
+    end
+  end
 end
