@@ -30,7 +30,7 @@
 <br><br><br><br>
 <button id = "btn" class="button"  style="opacity:0;">Book An Appointment</button>
 <script>
-    var date,month,year,res;
+    var date,day,month,year,res;
     $("#appt_date").change(function(){
         var date = new Date($('#appt_date').val());
         day = date.getDate();
@@ -38,7 +38,7 @@
         year = date.getFullYear();
         $('#timedd').empty();
         $('#btn').css('opacity', '0');
-        $.ajax({data: { year: year, month: month, day: day, id: '<%= @pathology_lab_test.id%>'}
+        $.ajax({data: { year: year, month: month, day: day, path_test_id: '<%= @pathology_lab_test.id%>'}
                 ,url: "<%= get_time_info_path()%>"
                 ,type: 'GET',
                 beforeSend: function (xhr) {
@@ -58,6 +58,6 @@
     });
 
     $("#btn").on('click', function (e) {
-      window.location.replace("pay");
+      window.location.replace("pay?path_test_id=" + '<%= @pathology_lab_test.id%>' + '&date=' + day + "-" + month + "-" + year + '&time=' + $('#timedd').val());
     })
 </script>

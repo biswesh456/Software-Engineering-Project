@@ -46,18 +46,20 @@
     console.log(testid);
     $('#secondDropdown').empty();
     var pathologylabList = []
+    var idList = []
     '<%@testid.each do |i|%>'
       if('<%= i%>' == testid){
         '<%= @k = (PathologyLabTest.where(test_id: i))%>'
         '<%@k.each do |k|%>'
           pathologylabList.push('<%= (Pathologylab.find_by(id: k.pathologylab_id)).name%>')
+          idList.push('<%= k.pathologylab_id%>')
         '<%end%>'
       }
     '<%end%>'
 
     $('#secondDropdown').append('<option value='+ 0 + '> Select the pathalogy lab </option>')
     for (l=0; l<pathologylabList.length; l++)
-      $('#secondDropdown').append('<option value='+ pathologylabList[l] + '>' + pathologylabList[l] + '</option>')
+      $('#secondDropdown').append('<option value='+ idList[l] + '>' + pathologylabList[l] + '</option>')
 
   })
 
@@ -67,7 +69,8 @@
       $('#info').hide();
     else {
       var testid = $('#firstDropdown').val();
-      $.ajax({data: { test_id: testid, pathologylab_name: pathid}
+      console.log(pathid)
+      $.ajax({data: { test_id: testid, pathologylab_id: pathid}
               ,url: "<%= pathologylab_test_info_path()%>"
               ,type: 'GET',
               beforeSend: function (xhr) {
@@ -91,6 +94,6 @@
     }
   })
   $("#btn").on('click', function (e) {
-    window.location.replace("appointment/book?id=" + res.path_test.id);
+    window.location.replace("appointment/book?path_test_id=" + res.path_test.id);
   })
 </script>

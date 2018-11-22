@@ -34,6 +34,6 @@
 <button id = "btn" class="button">Pay and confirm appointment</button>
 <script>
     $("#btn").on('click', function (e) {
-      window.location.replace("confirmation");
+      window.location.replace("confirmation?path_test_id="+'<%= @pathology_lab_test.id%>' + '&date=' + '<%=@date%>' + '&time=' + '<%=@time%>');
     })
 </script>

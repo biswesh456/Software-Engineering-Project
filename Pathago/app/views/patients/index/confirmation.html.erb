@@ -14,7 +14,7 @@
 }
 </style>
 
-<h1> Appointment Confirmation</h1> <br><br><br><br>
+<h1> Appointment Summary</h1> <br><br>
 <div class="panel panel-default">
   <div class="panel-heading">Pathology Lab</div>
   <div class="panel-body"><%= @pathologylab.name %></div>
@@ -33,11 +33,11 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">Date</div>
-  <div class="panel-body">N/A</div>
+  <div class="panel-body"><%=@date%></div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">Time</div>
-  <div class="panel-body">N/A</div>
+  <div class="panel-body"><%=@time%></div>
 </div>
 
 <button id = "btn" class="button">Home</button>

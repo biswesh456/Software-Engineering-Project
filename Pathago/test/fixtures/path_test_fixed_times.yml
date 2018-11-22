@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pathology_lab_test: one
+  time: 2018-11-22 22:25:58
+
+two:
+  pathology_lab_test: two
+  time: 2018-11-22 22:25:58
