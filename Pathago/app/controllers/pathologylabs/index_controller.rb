@@ -58,4 +58,19 @@ class Pathologylabs::IndexController < ApplicationController
     @appointment.save
     redirect_to pathologylab_history_path()
   end
+
+  def update_test
+    @path_test = PathologyLabTest.where(pathologylab_id: current_pathologylab.id)
+  end
+
+  def get_fixed_time
+    @path_test = PathologyLabTest.find_by(pathologylab_id: current_pathologylab.id, test_id: params[:test_id])
+    @fixed_time = PathTestFixedTime.where(pathology_lab_test_id: @path_test.id)
+    render json: @fixed_time
+  end
+
+  def delete_fixed_time
+    puts("wertgyhujkjhgfdsasdfgsdfghjkjhwqwertyui")
+    puts(params[:fixed_time_id])
+  end
 end

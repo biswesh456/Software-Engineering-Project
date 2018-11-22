@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   get "/pathologylab/:id/history", to: "pathologylabs/index#history" , as:"pathologylab_history"
   get "/pathologylab/:id/edit_appointment", to: "pathologylabs/index#edit_appointment" , as:"pathologylab_edit_appointment"
   get "/pathologylab/:id/edit_appointment_after", to: "pathologylabs/index#edit_appointment_after" , as:"pathologylab_edit_appointment_after"
+  get "/pathologylab/:id/update_test", to: "pathologylabs/index#update_test" , as:"pathologylab_update_test"
+  get "/pathologylab/:id/get_fixed_time", to: "pathologylabs/index#get_fixed_time", as: "get_fixed_time"
+  get "/pathologylab/:id/delete_fixed_time", to: "pathologylabs/index#delete_fixed_time", as: "delete_fixed_time"
 end

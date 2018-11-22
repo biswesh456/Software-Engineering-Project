@@ -1,0 +1,89 @@
+
+<select id="test" class="btn btn-warning dropdown-toggle" style="font-size: 16px;">
+  <option value="k">Select a test</option>
+  <% @path_test.each do |pt|%>
+    <option value="<%= pt.test.id%>"><%= pt.test.name%></option>
+  <% end %>
+</select>
+
+<br><br>
+
+<div class="panel-body">
+  <table id="myTable" width = 600 >
+    <thead>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+          </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<script type="text/javascript">
+  $('#test').on('change', function (e) {
+    var test_id = $(this).val();
+    var res;
+    if (test_id != "k") {
+      $.ajax({data: { test_id: test_id}
+              ,url: "<%= get_fixed_time_path()%>"
+              ,type: 'GET',
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+              },success: function(result){
+                res = result;
+                $('#myTable tbody').empty()
+                for (i=0; i<result.length; i++) {
+                  var url = 'onclick="window.location.href=delete_fixed_time?fixed_time_id='+ result[i].id + '"'
+                  console.log(url)
+                  $('#myTable tbody').append('<tr><td><strong class="appt-id">' + (result[i].time.toString()).slice(11,16) + '</strong></td><td class="appt-text"><input type="button" class="btn btn-danger" value="Remove" ' + url +' ></button></td></tr>')
+                }
+              }
+      })
+    }
+  });
+</script>
+
+
+<style>
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      color: #4a4a4d;
+      font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    th,
+    td {
+      padding: 5px 20px;
+      vertical-align: middle;
+      align: middle;
+      border-bottom: 1px solid #cecfd5;
+      border-right: 1px solid #cecfd5;
+    }
+    thead {
+      background: #395870;
+      background: linear-gradient(#49708f, #293f50);
+      color: #fff;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    th:nth-child(n){
+        border-top-left-radius: 5px;
+        text-align: center;
+    }
+    tbody tr:nth-child(even) {
+      background: #f0f0f2;
+    }
+    .appt-id{
+      color: #395870;
+      display: block;
+      text-align: center;
+    }
+    .appt-text {
+      text-align: center;
+    }
+</style>
