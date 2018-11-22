@@ -58,6 +58,6 @@
     });
 
     $("#btn").on('click', function (e) {
-      window.location.replace("pay?path_test_id=" + '<%= @pathology_lab_test.id%>' + '&date=' + day + "-" + month + "-" + year + '&time=' + $('#timedd').val());
+      window.location.replace("pay?path_test_id=" + '<%= @pathology_lab_test.id%>' + '&date=' + year + "-" + month + "-" + day + '&time=' + $('#timedd').val());
     })
 </script>

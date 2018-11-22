@@ -11,6 +11,14 @@ class AppointmentsController < ApplicationController
     year = params[:year]
     present = false
 
+    @test_time_all = PathTestFixedTime.where(pathology_lab_test_id: params[:path_test_id])
+
+    @test_time_all.each do |f|
+      d_hours = f.time.strftime("%H")
+      d_minutes = f.time.strftime("%M")
+      @available_time.push(d_hours + ":" + d_minutes)
+    end
+
     @test_path_time.each do |f|
       d_day = (f.time.to_date).strftime("%d")
       d_year = (f.time.to_date).strftime("%Y")
@@ -19,11 +27,8 @@ class AppointmentsController < ApplicationController
       d_minutes = f.time.strftime("%M")
       if d_day == day && d_month == month && d_year == year
         present = true
-        if f.occupied_seats.nil?
-          f.occupied_seats = 0
-        end
-        if f.occupied_seats < seats
-          @available_time.push(d_hours + ":" + d_minutes)
+        if f.occupied_seats >= seats
+          @available_time.delete(d_hours + ":" + d_minutes)
         end
         break
       end
