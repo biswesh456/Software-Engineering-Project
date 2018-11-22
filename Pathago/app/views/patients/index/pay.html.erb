@@ -1,0 +1,39 @@
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+</style>
+
+<div class="payement-details">
+  <label for="card">Enter Card Number:</label>
+  <input type="text" class="payement-details" id="card">
+</div>
+<div class="payement-details">
+  <label for="name">Enter Name:</label>
+  <input type="text" class="payement-details" id="name">
+</div>
+<div class="payement-details">
+  <label for="CVV">Enter CVV:</label>
+  <input type="password" class="payement-details" id="cvv">
+</div>
+<div class="payement-details">
+  <label for="pin">Enter Your PIN:</label>
+  <input type="password" class="payement-details" id="pin">
+</div>
+<br><br><br><br>
+<button id = "btn" class="button">Pay and confirm appointment</button>
+<script>
+    $("#btn").on('click', function (e) {
+      window.location.replace("confirmation");
+    })
+</script>

@@ -1,3 +1,19 @@
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+</style>
+
 <h1>Make A New Appointment</h1>
 <br>
 <div><h4>Test Name</h4> <%= @test.name%><div>
@@ -12,7 +28,7 @@
   <option value='0'>Select </option>
 </select>
 <br><br><br><br>
-<button type="button" id='btn' style="opacity:0;">Book an appointment</button>
+<button id = "btn" class="button"  style="opacity:0;">Book An Appointment</button>
 <script>
     var date,month,year,res;
     $("#appt_date").change(function(){
@@ -42,6 +58,6 @@
     });
 
     $("#btn").on('click', function (e) {
-      window.location.replace("/");
+      window.location.replace("pay");
     })
 </script>

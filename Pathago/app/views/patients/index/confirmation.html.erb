@@ -1,0 +1,49 @@
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+</style>
+
+<h1> Appointment Confirmation</h1> <br><br><br><br>
+<div class="panel panel-default">
+  <div class="panel-heading">Pathology Lab</div>
+  <div class="panel-body"><%= @pathologylab.name %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Pathology Lab address</div>
+  <div class="panel-body"><%= @pathologylab.address %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Test</div>
+  <div class="panel-body"><%= @test.name %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Cost</div>
+  <div class="panel-body"><%= @cost %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Date</div>
+  <div class="panel-body">N/A</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Time</div>
+  <div class="panel-body">N/A</div>
+</div>
+
+<button id = "btn" class="button">Home</button>
+
+<script>
+    $("#btn").on('click', function (e) {
+      window.location.replace("/");
+    })
+</script>

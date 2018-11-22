@@ -7,7 +7,7 @@ class Patients::IndexController < ApplicationController
   def show
     @appointments = Appointment.where(patient_id: current_patient.id)
   end
-  
+
   def profile
     @patient = Patient.find(params[:id])
   end
@@ -20,5 +20,15 @@ class Patients::IndexController < ApplicationController
     @pathology_lab_test = PathologyLabTest.find(params[:id])
     @test = @pathology_lab_test.test
     @pathologylab = @pathology_lab_test.pathologylab
+  end
+
+  def confirmation
+    @pathology_lab_test = PathologyLabTest.find(params[:id])
+    @test = @pathology_lab_test.test
+    @pathologylab = @pathology_lab_test.pathologylab
+    @cost = @pathology_lab_test.cost
+  end
+
+  def pay
   end
 end

@@ -1,3 +1,19 @@
+<style>
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+</style>
+
 <div> Test </div>
 <div>
 <select id="firstDropdown">
@@ -18,7 +34,7 @@
 </div>
 </br>
 <div id='info'> </div>
-<button type="button" id='btn' style="opacity:0;">Book an appointment</button>
+<button id = "btn" class="button"  style="opacity:0;">Proceed</button>
 
 
 <script type="text/javascript">
@@ -59,8 +75,14 @@
               },success: function(result){
                 res = result;
                 $("#info").html(
-                  '<h4> Cost: ' + 'Rs. ' + result.path_test.cost + '</h4>' + '</br>' +
-                  '<h4> Lab Address: ' + result.pathlab.address + '</h4>' + '</br></br>'
+                  '<div class="panel panel-default">'+
+                    '<div class="panel-heading">Cost</div>'+
+                    '<div class="panel-body">' + result.path_test.cost + '</div>' +
+                  '</div>' +
+                  '<div class="panel panel-default">'+
+                    '<div class="panel-heading">Address</div>'+
+                    '<div class="panel-body">' + result.pathlab.address + '</div>' +
+                  '</div>' + '<br>'
                 );
                 $('#btn').css('opacity', '1');
               }
@@ -68,7 +90,6 @@
       $('#info').show();
     }
   })
-
   $("#btn").on('click', function (e) {
     window.location.replace("appointment/book?id=" + res.path_test.id);
   })
