@@ -5,24 +5,18 @@
     <option value="<%= pt.test.id%>"><%= pt.test.name%></option>
   <% end %>
 </select>
-
+<br><br><br><br>
+<select id="available_time" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
+  <option value="k">Select from existing time</option>
+</select>
 <br><br>
-
-<div class="panel-body">
-  <table id="myTable" width = 600 >
-    <thead>
-      <tr>
-        <th scope="col">Time</th>
-        <th scope="col">Remove</th>
-      </tr>
-    </thead>
-    <tbody>
-          <tr>
-          </tr>
-    </tbody>
-  </table>
-</div>
-
+<button id="bttn1" class="btn btn-danger">Remove</button>
+<br><br><br><br>
+<select id="new_time" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
+  <option value="k">Add new time for the test</option>
+</select>
+<br><br>
+<button id="bttn2" class="btn btn-success">Add</button>
 
 <script type="text/javascript">
   $('#test').on('change', function (e) {
@@ -35,17 +29,35 @@
               beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
               },success: function(result){
-                res = result;
-                $('#myTable tbody').empty()
-                for (i=0; i<result.length; i++) {
-                  var url = 'onclick="window.location.href=delete_fixed_time?fixed_time_id='+ result[i].id + '"'
-                  console.log(url)
-                  $('#myTable tbody').append('<tr><td><strong class="appt-id">' + (result[i].time.toString()).slice(11,16) + '</strong></td><td class="appt-text"><input type="button" class="btn btn-danger" value="Remove" ' + url +' ></button></td></tr>')
+                res = result.fixed_time;
+                $('#available_time').empty()
+                $('#available_time').append('<option value="k">Select from existing time</option>')
+                for (i=0; i<res.length; i++) {
+                  $('#available_time').append('<option value='+ res[i].id + '>' + (res[i].time.toString()).slice(11,16) + '</option>')
                 }
-              }
+                lst = result.lst;
+                $('#new_time').empty();
+                $('#new_time').append('<option value="k">Add new time for the test</option>')
+                for (i=0; i<lst.length; i++) {
+                  $('#new_time').append('<option value='+ lst[i] + '>' + lst[i]  + '</option>')
+                }
+            }
       })
     }
   });
+
+  $("#bttn1").on('click', function (e) {
+    console.log('wer')
+    if ($("#available_time").val() != 'k'){
+      window.location.replace("delete_fixed_time?fixed_time_id=" + $("#available_time").val());
+    }
+  })
+  $("#bttn2").on('click', function (e) {
+    console.log('qer')
+    if ($("#new_time").val() != 'k'){
+      window.location.replace("add_fixed_time?time=" + $("#new_time").val() + "&test_id=" + $("#test").val());
+    }
+  })
 </script>
 
 

@@ -38,4 +38,5 @@ Rails.application.routes.draw do
   get "/pathologylab/:id/update_test", to: "pathologylabs/index#update_test" , as:"pathologylab_update_test"
   get "/pathologylab/:id/get_fixed_time", to: "pathologylabs/index#get_fixed_time", as: "get_fixed_time"
   get "/pathologylab/:id/delete_fixed_time", to: "pathologylabs/index#delete_fixed_time", as: "delete_fixed_time"
+  get "/pathologylab/:id/add_fixed_time", to: "pathologylabs/index#add_fixed_time", as: "add_fixed_time"
 end
