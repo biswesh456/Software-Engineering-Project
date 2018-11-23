@@ -72,7 +72,7 @@ class Pathologylabs::IndexController < ApplicationController
       minutes = ft.time.strftime("%M")
       @list.delete(hours+":"+minutes)
     end
-    render json: {fixed_time: @fixed_time, lst:@list}
+    render json: {fixed_time: @fixed_time, lst:@list, path_test:@path_test}
   end
 
   def delete_fixed_time
@@ -81,10 +81,24 @@ class Pathologylabs::IndexController < ApplicationController
   end
 
   def add_fixed_time
-    puts("wertgyhujkjhgfdsasdfgsdfghjkjhwqwertyui")
     plt = PathologyLabTest.find_by(test_id: params[:test_id], pathologylab_id:current_pathologylab.id).id
-
     PathTestFixedTime.create(pathology_lab_test_id: plt, time: DateTime.strptime("2000-01-01"+ " " + params[:time] + ":00", '%Y-%m-%d %H:%M:%S'))
+    redirect_to pathologylab_update_test_path()
+  end
+
+  def add_seats
+    puts("wertgyhujkjhgfdsasdfgsdfghjkjhwqwertyui")
+    plt = PathologyLabTest.find_by(test_id: params[:test_id], pathologylab_id:current_pathologylab.id)
+    plt.total_seats = params[:seats]
+    plt.save
+    redirect_to pathologylab_update_test_path()
+  end
+
+  def add_cost
+    puts("wertgyhujkjhgfdsasdfgsdfghjkjhwqwertyui")
+    plt = PathologyLabTest.find_by(test_id: params[:test_id], pathologylab_id:current_pathologylab.id)
+    plt.cost = params[:cost]
+    plt.save
     redirect_to pathologylab_update_test_path()
   end
 end

@@ -1,5 +1,5 @@
 
-<select id="test" class="btn btn-warning dropdown-toggle" style="font-size: 16px;">
+<select id="test" class="btn btn-primary dropdown-toggle" style="font-size: 16px;">
   <option value="k">Select a test</option>
   <% @path_test.each do |pt|%>
     <option value="<%= pt.test.id%>"><%= pt.test.name%></option>
@@ -10,13 +10,19 @@
   <option value="k">Select from existing time</option>
 </select>
 <br><br>
-<button id="bttn1" class="btn btn-danger">Remove</button>
+<button id="bttn1" class="btn btn-danger">Remove Time</button>
 <br><br><br><br>
 <select id="new_time" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
   <option value="k">Add new time for the test</option>
 </select>
 <br><br>
-<button id="bttn2" class="btn btn-success">Add</button>
+<button id="bttn2" class="btn btn-success">Add Time</button>
+<br><br><br><br>
+<input type="number" id="seats" min="1" max="100" style="opacity:0">
+<button id="bttn3" class="btn btn-warning" style="opacity:0">Change seats</button>
+<br><br><br><br>
+<input type="number" id="cost" min="1" max="100000" style="opacity:0">
+<button id="bttn4" class="btn btn-warning" style="opacity:0">Change cost of the test</button>
 
 <script type="text/javascript">
   $('#test').on('change', function (e) {
@@ -30,6 +36,14 @@
                 xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
               },success: function(result){
                 res = result.fixed_time;
+                $("#seats").css('opacity', '1')
+                $("#seats").val(result.path_test.total_seats)
+                $("#bttn3").css('opacity', '1')
+
+                $("#cost").css('opacity', '1')
+                $("#cost").val(result.path_test.cost)
+                $("#bttn4").css('opacity', '1')
+
                 $('#available_time').empty()
                 $('#available_time').append('<option value="k">Select from existing time</option>')
                 for (i=0; i<res.length; i++) {
@@ -58,6 +72,20 @@
       window.location.replace("add_fixed_time?time=" + $("#new_time").val() + "&test_id=" + $("#test").val());
     }
   })
+  $("#bttn3").on('click', function (e) {
+    console.log('qer')
+    if ($("#seats").val() != 'k'){
+      window.location.replace("add_seats?seats=" + $("#seats").val() + "&test_id=" + $("#test").val());
+    }
+  })
+  $("#bttn4").on('click', function (e) {
+    console.log('qer')
+    if ($("#cost").val() != 'k'){
+      window.location.replace("add_cost?cost=" + $("#cost").val() + "&test_id=" + $("#test").val());
+    }
+  })
+
+
 </script>
 
 

@@ -53,7 +53,7 @@ class Pathologylabs::RegistrationsController < Devise::RegistrationsController
       unless t.nil?
         new_path_test = PathologyLabTest.find_by(test_id: t.id, pathologylab_id:current_pathologylab.id)
         if new_path_test.blank?
-          PathologyLabTest.create(test_id: t.id, pathologylab_id:current_pathologylab.id)
+          PathologyLabTest.create(test_id: t.id, pathologylab_id:current_pathologylab.id, total_seats:10, cost:1000)
         end
       end
     end
