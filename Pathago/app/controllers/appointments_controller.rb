@@ -1,6 +1,14 @@
 class AppointmentsController < ApplicationController
   def new
   end
+
+  def update
+    a = Appointment.find(params[:id])
+    a.update(params.require(:appointment).permit(:attachment))
+
+    redirect_to pathologylab_current_appointment_path()
+  end
+
   def time_info
     @test_path_time = TestPathTime.where(pathology_lab_test_id: params[:path_test_id])
     @pathology_lab_test = PathologyLabTest.find(params[:path_test_id])

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "/", to: "index#index"
+  resources :appointments
   devise_for :admins, path: 'admin', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }, controllers: {registrations: 'admins/registrations', sessions: 'admins/sessions'}
   devise_scope :admin do
    get "signup", to: "admins/registrations#new"
@@ -41,4 +42,5 @@ Rails.application.routes.draw do
   get "/pathologylab/:id/add_fixed_time", to: "pathologylabs/index#add_fixed_time", as: "add_fixed_time"
   get "/pathologylab/:id/add_seats", to: "pathologylabs/index#add_seats", as: "add_seats"
   get "/pathologylab/:id/add_cost", to: "pathologylabs/index#add_cost", as: "add_cost"
+  put "appointments/:id", to: "appointments#update", as: "appointment_update"
 end

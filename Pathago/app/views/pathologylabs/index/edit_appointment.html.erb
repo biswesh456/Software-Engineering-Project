@@ -35,17 +35,26 @@
 <div class="panel panel-default">
   <div class="panel-heading">Change Status</div>
   <div class="panel-body">
-    <select id="status" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
+    <select id="status" class="btn btn-danger dropdown-toggle" style="font-size: 20px;">
       <option value="Pending">Pending</option>
       <option value="Complete">Complete</option>
     </select>
+    <button id="bttn" class="btn btn-danger"> Change </button>
   </div>
 </div>
-<div class="panel panel-default">
-  <div class="panel-heading">Add Report</div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Attach Result</div>
+  <div class="panel-body">
+  <%= form_for @appointment, :html => {:multipart => true} do |f| %>
+  <p>
+    <%= f.file_field :attachment%>
+  </p>
+  <p><%= f.submit class: "btn btn-info"  %></p>
+  <%end%>
 </div>
-<button id="bttn" class="btn btn-info"> Done </button>
+</div>
+
 <script>
   $("#bttn").on('click', function (e) {
     window.location.replace("edit_appointment_after?status=" + $("#status").val() + "&app_id=" + '<%=@appointment.id%>');

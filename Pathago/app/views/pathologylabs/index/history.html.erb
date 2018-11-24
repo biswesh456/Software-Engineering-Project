@@ -64,7 +64,7 @@
             <td class="appt-text"><%= @patient.id%></td>
             <td class="appt-text"><%= @patient.name%></td>
             <td class="appt-text"><%=f.status%></td>
-            <td class="appt-text"><%=f.result%></td>
+            <td class="appt-text"><%= link_to "Download", f.attachment.url %></td>
             <td class="appt-text"><%= link_to('Edit', pathologylab_edit_appointment_path(app_id: f.id), method: :get, class: 'btn btn-primary')%></td>
         </tr>
     <%end%>
