@@ -7,12 +7,10 @@ services:
 
 before_script:
   - cd Pathago
-  - docker-compose up -d
-  - sleep 5000
+  - docker-compose up --build -d
 script:
   - docker-compose run app rake db:create
   - docker-compose run app rake db:migrate
   - echo "Done !!!"
-  - sleep 2000
 after_script:
   - docker-compose down
