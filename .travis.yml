@@ -11,6 +11,7 @@ before_script:
 script:
   - docker-compose run app rake db:create
   - docker-compose run app rake db:migrate
+  - docker-compose run app rspec
   - echo "Done !!!"
 after_script:
   - docker-compose down
