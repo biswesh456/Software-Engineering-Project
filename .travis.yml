@@ -1,0 +1,13 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker-compose
+
+script:
+- cd Pathago
+- docker-compose up
+- sleep 5000
+- docker-compose run app rake db:create
+- docker-compose run app rake db:migrate
