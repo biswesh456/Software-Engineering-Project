@@ -11,3 +11,5 @@ script:
 - sleep 5000
 - docker-compose run app rake db:create
 - docker-compose run app rake db:migrate
+- sleep 10000
+- docker-compose down
