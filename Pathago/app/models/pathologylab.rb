@@ -1,7 +1,7 @@
 class Pathologylab < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :pathogy_lab_tests
+  has_many :pathology_lab_tests
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -21,5 +21,5 @@ class Pathologylab < ApplicationRecord
   end
 
   def tests_not_approved
-  end  
+  end
 end
