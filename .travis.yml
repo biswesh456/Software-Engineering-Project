@@ -5,11 +5,14 @@ language: ruby
 services:
   - docker-compose
 
+before_script:
+  - cd Pathago
+  - docker-compose up -d
+  - sleep 5000
 script:
-- cd Pathago
-- docker-compose up
-- sleep 5000
-- docker-compose run app rake db:create
-- docker-compose run app rake db:migrate
-- sleep 10000
-- docker-compose down
+  - docker-compose run app rake db:create
+  - docker-compose run app rake db:migrate
+  - echo "Done !!!"
+  - sleep 2000
+after_script:
+  - docker-compose down
