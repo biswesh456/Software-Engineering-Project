@@ -8,7 +8,7 @@ Run Migrations: rails db:migrate <br />
 Start: Rails s <br />
 
 ## With docker
-docker-compose build
-docker-compose up
-docker-compose run app rake db:create
-docker-compose run app rake db:migrate
+docker-compose build <br />
+docker-compose up <br />
+docker-compose run app rake db:create <br />
+docker-compose run app rake db:migrate <br />
