@@ -16,7 +16,7 @@
 
 <div> Test </div>
 <div>
-<select id="firstDropdown">
+<select id="firstDropdown" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
     <option value="0">Select one of the tests</option>
       <%= @testid = []%>
       <%Test.all.map(&:name).each do |i|%>
@@ -28,7 +28,7 @@
 </br>
 <div> Pathology Lab </div>
 <div>
-    <select id="secondDropdown">
+    <select id="secondDropdown" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
         <option value="0">Please select the value in tests dropdown</option>
     </select>
 </div>

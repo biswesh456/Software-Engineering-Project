@@ -43,4 +43,5 @@ Rails.application.routes.draw do
   get "/pathologylab/:id/add_seats", to: "pathologylabs/index#add_seats", as: "add_seats"
   get "/pathologylab/:id/add_cost", to: "pathologylabs/index#add_cost", as: "add_cost"
   put "appointments/:id", to: "appointments#update", as: "appointment_update"
+  get "/patient/:id/view_appointment", to: "patients/index#view_appointment" , as:"patient_view_appointment"
 end

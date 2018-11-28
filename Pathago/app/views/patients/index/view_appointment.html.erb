@@ -1,0 +1,45 @@
+<script>
+  '<%=@path_test = PathologyLabTest.find(@appointment.pathology_lab_test_id)%>'
+  '<%=@pathologylab = Pathologylab.find(@path_test.pathologylab_id)%>'
+  '<%=@patient = Patient.find(@appointment.patient_id)%>'
+
+  '<%= @hours = @appointment.appointment_time.strftime("%H")%>'
+  '<%= @minutes = @appointment.appointment_time.strftime("%M")%>'
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Pathology Lab</div>
+  <div class="panel-body"><%= @pathologylab.name %></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Pathology Lab Address</div>
+  <div class="panel-body"><%= @pathologylab.address %></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Appointment Date</div>
+  <div class="panel-body"><%= @appointment.appointment_date %></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Appointment Time</div>
+  <div class="panel-body"><%= @hours + ":" + @minutes%></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Cost</div>
+  <div class="panel-body"><%= @path_test.cost%></div>
+</div>
+
+<%if @appointment.attachment.url.nil? || @appointment.status == "Pending"%>
+    <div class="panel panel-default">
+      <div class="panel-heading">Status</div>
+      <div class="panel-body"><%= @appointment.status%></div>
+    </div>
+<%else%>
+    <div class="panel panel-default">
+      <div class="panel-heading">Result</div>
+      <div class="panel-body"><%= link_to "Download", @appointment.attachment.url %></div>
+    </div>
+<%end%>
