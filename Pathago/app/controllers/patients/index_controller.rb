@@ -46,4 +46,8 @@ class Patients::IndexController < ApplicationController
     @date = params[:date]
     @time = params[:time]
   end
+
+  def view_appointment
+      @appointment = Appointment.find(params[:app_id])
+  end
 end

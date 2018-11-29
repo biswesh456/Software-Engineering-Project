@@ -1,28 +1,31 @@
+<h3> Update Tests </h3>
 
-<select id="test" class="btn btn-primary dropdown-toggle" style="font-size: 16px;">
+<br><br>
+
+<select id="test" class="btn btn-success dropdown-toggle" style="font-size: 16px;">
   <option value="k">Select a test</option>
   <% @path_test.each do |pt|%>
     <option value="<%= pt.test.id%>"><%= pt.test.name%></option>
   <% end %>
 </select>
 <br><br><br><br>
-<select id="available_time" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
+<select id="available_time" class="btn btn-success dropdown-toggle" style="font-size: 16px;">
   <option value="k">Select from existing time</option>
 </select>
 <br><br>
-<button id="bttn1" class="btn btn-danger">Remove Time</button>
+<button id="bttn1" class="btn btn-success">Remove Time</button>
 <br><br><br><br>
-<select id="new_time" class="btn btn-info dropdown-toggle" style="font-size: 16px;">
+<select id="new_time" class="btn btn-success dropdown-toggle" style="font-size: 16px;">
   <option value="k">Add new time for the test</option>
 </select>
 <br><br>
 <button id="bttn2" class="btn btn-success">Add Time</button>
 <br><br><br><br>
 <input type="number" id="seats" min="1" max="100" style="opacity:0">
-<button id="bttn3" class="btn btn-warning" style="opacity:0">Change seats</button>
+<button id="bttn3" class="btn btn-success" style="opacity:0">Change seats</button>
 <br><br><br><br>
 <input type="number" id="cost" min="1" max="100000" style="opacity:0">
-<button id="bttn4" class="btn btn-warning" style="opacity:0">Change cost of the test</button>
+<button id="bttn4" class="btn btn-success" style="opacity:0">Change cost of the test</button>
 
 <script type="text/javascript">
   $('#test').on('change', function (e) {

@@ -45,4 +45,5 @@ Rails.application.routes.draw do
   get "/admin/:id/add_test", to: "admins/index#add_test", as: "add_test"
   get "/admin/:id/remove_test", to: "admins/index#remove_test", as: "remove_test"
   put "appointments/:id", to: "appointments#update", as: "appointment_update"
+  get "/patient/:id/view_appointment", to: "patients/index#view_appointment" , as:"patient_view_appointment"
 end
