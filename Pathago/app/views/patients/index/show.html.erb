@@ -47,7 +47,6 @@
       <th scope="col">Test Name</th>
       <th scope="col">Pathology Lab</th>
       <th scope="col">Status</th>
-      <th scope="col">Result</th>
       <th scope="col">Cost</th>
       <th scope="col">View</th>
     </tr>
@@ -64,7 +63,6 @@
                 </td>
                 <td class="appt-text"><%= @path_test.pathologylab.name%></td>
                 <td class="appt-text"><%=f.status%></td>
-                <td class="appt-text"><%=f.result%></td>
                 <td class="appt-text">Rs. <%= @path_test.cost%></td>
                 <td class="appt-text"><%=link_to('View', patient_view_appointment_path(app_id: f.id), method: :get, class: 'btn btn-primary')%></td>
             <%end%>
@@ -83,7 +81,6 @@
       <th scope="col">Test Name</th>
       <th scope="col">Pathology Lab</th>
       <th scope="col">Status</th>
-      <th scope="col">Result</th>
       <th scope="col">Cost</th>
       <th scope="col">View</th>
     </tr>
@@ -100,7 +97,6 @@
                 </td>
                 <td class="appt-text"><%= @path_test.pathologylab.name%></td>
                 <td class="appt-text"><%=f.status%></td>
-                <td class="appt-text"><%=f.result%></td>
                 <td class="appt-text">Rs. <%= @path_test.cost%></td>
                 <td class="appt-text"><%=link_to('View', patient_view_appointment_path(app_id: f.id), method: :get, class: 'btn btn-primary')%></td>
             <%end%>

@@ -40,10 +40,4 @@
   <div class="panel-body"><%=@time%></div>
 </div>
 
-<button id = "btn" class="button">Home</button>
-
-<script>
-    $("#btn").on('click', function (e) {
-      window.location.replace("/patient/:id/show");
-    })
-</script>
+<%= link_to "Home", patient_show_appointment_path(), class:"button"%>

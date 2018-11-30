@@ -6,7 +6,7 @@ class AppointmentsController < ApplicationController
     a = Appointment.find(params[:id])
     a.update(params.require(:appointment).permit(:attachment))
 
-    redirect_to '/'
+    redirect_to pathologylab_history_path()
   end
 
   def time_info

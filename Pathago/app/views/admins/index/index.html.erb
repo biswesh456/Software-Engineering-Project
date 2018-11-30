@@ -1,2 +1,29 @@
-<h1>Hello <%= @admin.name%></h1>
-<%= link_to('Logout', destroy_admin_session_path, method: :delete) %>
+<div class="form-group">
+  <label for="usr">Add New Test Name:</label>
+  <input type="text" class="form-control" id="test_name">
+</div>
+<button id="add" class="btn btn-info">Add</button>
+<br> <br> <br> <br>
+<div> Remove Tests </div>
+<div>
+<select id="dropdown" >
+    <option value="0">Select one of the tests</option>
+      <%@tests.each do |i|%>
+        <option value='<%=i.id%>'><%=i.name%></option>
+      <% end %>
+    </select>
+</div>
+<br>
+<button id = "remove" class="btn btn-info">Remove</button>
+
+<script>
+$("#add").on('click', function (e) {
+    window.location.replace("add_test?test_name=" + $("#test_name").val());
+})
+$("#remove").on('click', function (e) {
+  if ($("#dropdown").val() != "0") {
+    console.log($("#dropdown").val())
+    window.location.replace("remove_test?test_id=" + $("#dropdown").val());
+  }
+})
+</script>
